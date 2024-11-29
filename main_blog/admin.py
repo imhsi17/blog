@@ -37,7 +37,7 @@ class ComentarioAutorAdmin(admin.ModelAdmin):
     list_per_page = 30
 
 
-@admin.register(ComentarioAutor)
+@admin.register(ComentarioLector)
 class ComentarioLectorAdmin(admin.ModelAdmin):
     
     list_display = ('contenido', 'lector', 'publicacion', 'fecha_publicacion')
