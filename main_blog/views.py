@@ -4,7 +4,7 @@ from .models import Publicacion
 # Create your views here.
 def index(request):
     
-    publicaciones = Publicacion.objects.all()
+    publicaciones = Publicacion.objects.all().order_by('-fecha_publicacion')
     
     
     return render(request, 'base.html', {'publicaciones':publicaciones})
