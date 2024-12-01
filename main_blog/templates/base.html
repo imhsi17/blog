@@ -61,7 +61,7 @@
                         <img src="../media/{{ publicacion.imagen }}" class="card-img-top" alt="imagen publicación">
                         <div class="card-body">
                         <h5 class="card-title">{{ publicacion.titulo }}</h5>
-                        <p class="card-text">Pequeña descripción de la publicación.</p>
+                        <p class="card-text">{{ publicacion.contenido.html|safe }}</p>
                         <a href="#" class="btn btn-info">Ver más</a>
                         <a href="#" class="btn btn-primary">{{ publicacion.categoria }}</a>
                         </div>
