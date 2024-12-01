@@ -23,7 +23,7 @@ class CategoriaAdmin(admin.ModelAdmin):
 @admin.register(Publicacion)
 class PublicacionAdmin(admin.ModelAdmin):
     
-    list_display = ('titulo', 'estado', 'autor', 'categoria','fecha_publicacion')
+    list_display = ('titulo', 'descripcion', 'estado', 'autor', 'categoria','fecha_publicacion')
     list_filter = ('autor', 'categoria', 'estado')
     list_per_page = 20
     search_fields = ['titulo']

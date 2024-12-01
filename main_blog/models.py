@@ -37,6 +37,9 @@ class Publicacion(models.Model):
     id = models.AutoField('Id', primary_key=True)
     titulo = models.CharField('Título', blank=False, null=False, max_length=200)
     contenido = QuillField()
+    descripcion = models.CharField('Descripción', max_length=75,
+                                   default='Descripción de la publicación',
+                                   null=False, blank=True)
     fecha_publicacion = models.DateField('Fecha Publicación', auto_now_add=True, auto_now=False)
     imagen = models.ImageField('Imagen', blank=True, upload_to='publicaciones')
     estado = models.BooleanField('Publicación Activa/No Activa', default=True)
