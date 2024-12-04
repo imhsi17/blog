@@ -7,4 +7,4 @@ def index(request):
     publicaciones = Publicacion.objects.all().order_by('-fecha_publicacion')
     
     
-    return render(request, 'base.html', {'publicaciones':publicaciones})
+    return render(request, 'index.html', {'publicaciones':publicaciones})
