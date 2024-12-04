@@ -28,9 +28,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
-                    <a class="nav-link text-light" href="#">Features</a>
-                    <a class="nav-link text-light" href="#">Pricing</a>
+                    {% for categoria in categorias %}
+                    <a class="nav-link active text-light" aria-current="page" href="#">{{ categoria.nombre }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
