@@ -38,7 +38,8 @@
     <div class="container">
         <div class="row text-light">
             <h1 class="display-3 text-center">BIENVENIDO AL BLOG</h1>
-            <p style="text-align: justify;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem ea magni, qui provident facere
+            <p style="text-align: justify;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem ea
+                magni, qui provident facere
                 libero nemo, numquam natus totam nihil quibusdam accusamus? Dolores eius sed ut possimus, molestias,
                 ullam voluptatibus quasi id iste perferendis aspernatur repudiandae tempore earum vero suscipit!
                 Veritatis dolor et possimus, ipsum sint quasi consequuntur sit nostrum vero? Accusantium quis
@@ -57,28 +58,33 @@
         </div>
         <div class="row text-center ">
             {% for publicacion in publicaciones %}
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 my-3">
-                    <div class="card">
-                        {% if publicacion.imagen %}
-                        <img src="../media/{{ publicacion.imagen }}" class="card-img-top" id="img-normalize" alt="imagen publicación">
-                        {% else %}
-                        <img src="../../media/3x2.webp" class="card-img-top" id="img-normalize" alt="3x2-default">
-                        {% endif %}
-                        <div class="card-body">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 my-3">
+                <div class="card">
+                    {% if publicacion.imagen %}
+                    <img src="../media/{{ publicacion.imagen }}" class="card-img-top" id="img-normalize"
+                        alt="imagen publicación">
+                    {% else %}
+                    <img src="../../media/3x2.webp" class="card-img-top" id="img-normalize" alt="3x2-default">
+                    {% endif %}
+                    <div class="card-body">
                         <h5 class="card-title">{{ publicacion.titulo }}</h5>
                         <p class="card-text">{{ publicacion.descripcion }}</p>
                         <!--<p class="card-text">{{ publicacion.contenido.html|safe }}</p>-->
-                        <p class="card-text"><small class="text-body-secondary">Fecha Publicación: {{ publicacion.fecha_publicacion }}</small></p>
+                        <p class="card-text"><small class="text-body-secondary">Fecha Publicación:
+                             {{publicacion.fecha_publicacion }}</small></p>
                         <a href="#" class="btn btn-info">Ver más</a>
                         <a href="#" class="btn btn-primary">{{ publicacion.categoria }}</a>
-                        </div>
                     </div>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </div>
 
-
+    <footer class="py-4 text-light text-center bg-dark bg-gradient">
+        <p>Pie de Página</p>
+    </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
