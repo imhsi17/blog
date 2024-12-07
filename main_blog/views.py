@@ -34,13 +34,17 @@ def categoria(request, nombre):
 
 def publicacion(request, id_publicacion):
     
-    publicacion = Publicacion.objects.get(pk=id_publicacion, estado=True)
-    categorias = Categoria.objects.filter(estado=True).order_by('-fecha_registro')
+    try:
+        publicacion = Publicacion.objects.get(pk=id_publicacion, estado=True)
     
-    context = {
-        'publicacion':publicacion,
-        'categorias':categorias
-    }
-    
-    return render(request, 'publicacion.html', context)
+        categorias = Categoria.objects.filter(estado=True).order_by('-fecha_registro')
+        
+        context = {
+            'publicacion':publicacion,
+            'categorias':categorias
+        }
+        
+        return render(request, 'publicacion.html', context)
+    except Publicacion.DoesNotExist:
+        return render(request, 'error.html')
     
