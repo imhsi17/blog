@@ -53,6 +53,7 @@
         </div>
     </div>
     {% endblock %}
+    {% block contenido %}
     <div class="container">
         <hr class="text-light">
     </div>
@@ -73,10 +74,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ publicacion.titulo }}</h5>
                         <p class="card-text">{{ publicacion.descripcion }}</p>
-                        <!--<p class="card-text">{{ publicacion.contenido.html|safe }}</p>-->
                         <p class="card-text"><small class="text-body-secondary">Fecha Publicación:
                              {{publicacion.fecha_publicacion }}</small></p>
-                        <a href="#" class="btn btn-info">Ver más</a>
+                        <a href="/publicacion/{{ publicacion.id }}" class="btn btn-info">Ver más</a>
                         <a href="/categoria/{{ publicacion.categoria.nombre }}" class="btn btn-primary">{{ publicacion.categoria }}</a>
                     </div>
                 </div>
@@ -84,7 +84,9 @@
             {% endfor %}
         </div>
     </div>
-
+    {% endblock %}
+    {% block recomendados %}
+    {% endblock %}
     <footer class="py-4 text-light text-center bg-dark bg-gradient">
         <p>Pie de Página</p>
     </footer>

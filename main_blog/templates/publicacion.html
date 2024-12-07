@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% block title %}
+Públicación | {{ publicacion.titulo }}
+{% endblock %}
+{% block bienvenida %}
+{% endblock %}
+{% block contenido %}
+<div class="container">
+    <div class="row text-light">
+        <h1 class="display-3" style="text-align: justify;">{{ publicacion.titulo }}</h1>
+        <img src="../media/{{ publicacion.imagen }}" id="img-publicacion" class="rounded mx-auto d-block" alt="imagen publicacion">
+    </div>
+    <div class="row text-light">
+        <div class="col-6">
+            <h4 class="text-start text-uppercase py-3">Publicado por: {{ publicacion.autor.first_name }} {{ publicacion.autor.last_name }}</h3>
+        </div>
+        <div class="col-3">
+            <h6 class="text-center text-uppercase py-3">Categoría: {{ publicacion.categoria.nombre }}</h4>
+        </div>
+        <div class="col-3">
+            <h5 class="text-end py-3 fst-italic">{{ publicacion.fecha_publicacion }}</h5>
+        </div>
+    </div>
+    <div class="row text-light">
+        <p style="text-align: justify;" class="text-center text-uppercase fw-bold">{{ publicacion.descripcion }}</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row text-light">
+        <p style="text-align: justify;">{{ publicacion.contenido.html|safe }}</p>
+    </div>
+</div>
+{% endblock %}
+{% block recomendados %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+
+        </div>
+    </div>
+</div>
+{% endblock %}

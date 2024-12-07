@@ -8,6 +8,11 @@ body{
     max-height: 246px;
 }
 
+#img-publicacion{
+    max-height: 526px;
+    max-width: 960px;
+}
+
 .card:hover{
     transition: 0.3s;
     scale: 1.01;

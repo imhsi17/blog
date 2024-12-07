@@ -31,4 +31,16 @@ def categoria(request, nombre):
     }
     
     return render(request, 'categoria.html', context)
+
+def publicacion(request, id_publicacion):
+    
+    publicacion = Publicacion.objects.get(pk=id_publicacion, estado=True)
+    categorias = Categoria.objects.filter(estado=True).order_by('-fecha_registro')
+    
+    context = {
+        'publicacion':publicacion,
+        'categorias':categorias
+    }
+    
+    return render(request, 'publicacion.html', context)
     
