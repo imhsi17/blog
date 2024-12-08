@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Publicacion, Categoria
+from django.shortcuts import render, redirect
+from .models import Publicacion, Categoria, Lector, ComentarioAutor, ComentarioLector
 
 # Create your views here.
 def index(request):
@@ -48,6 +48,31 @@ def publicacion(request, id_publicacion):
             'categorias':categorias,
             'otros':otras_publicaciones
         }
+        
+        if request.method=='POST' and request.user.is_authenticated:
+            comentario = request.POST['comentario']
+            comentario_autor = ComentarioAutor(
+                contenido = comentario,
+                autor = request.user,
+                publicacion = publicacion,
+            )
+            comentario_autor.save()
+            
+            return render(request, 'publicacion.html', context)
+        
+        elif request.method=='POST':
+            correo = request.POST['correo']
+            comentario = request.POST['comentario']
+            lector = Lector.objects.filter(correo=correo)
+            if lector:
+                comentario_lector = ComentarioLector(
+                    contenido = comentario,
+                    autor = lector,
+                    publicacion = publicacion
+                )
+                comentario_lector.save()
+                return render(request, 'publicacion.html', context)
+            
         
         return render(request, 'publicacion.html', context)
     except Publicacion.DoesNotExist:

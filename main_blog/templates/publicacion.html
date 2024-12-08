@@ -62,4 +62,36 @@ Públicación | {{ publicacion.titulo }}
         {% endfor %}
     </div>
 </div>
+<div class="container">
+    <hr class="text-light">
+</div>
+<div class="container">
+    <div class="row text-light">
+        <h1 class="display-4">Dejanos un Comentario</h1>
+    </div>
+    <div class="row justify-content-around">
+        <div class="col-6 text-light pb-4">
+            <form action="" method="post">
+                {% csrf_token %}
+                {% if request.user.is_authenticated %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label fs-3">Correo</label>
+                    <input type="email" name="correo" class="form-control" value="{{ request.user.email }}" readonly id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                {% else %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label fs-3">Correo</label>
+                    <input type="email" name="correo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text text-light">Si no está registrado, porfavor registrese para comentar la publicación.</div>
+                </div>
+                {% endif %}
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label fs-3">Comentario</label>
+                    <textarea class="form-control" name="comentario" id="exampleFormControlTextarea1" required rows="5" style="resize: none;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
