@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.validators import validate_email
 from .models import Publicacion, Categoria, Lector, ComentarioAutor, ComentarioLector
 
 # Create your views here.
@@ -77,4 +78,39 @@ def publicacion(request, id_publicacion):
         return render(request, 'publicacion.html', context)
     except Publicacion.DoesNotExist:
         return render(request, 'error.html')
+
+def registro_lector(request):
     
+    mensaje = ''
+    if request.method=='POST':
+        
+        nombre = request.POST['nombre']
+        apellido = request.POST['apellido']
+        correo = request.POST['correo']
+        
+        try:
+            lector = Lector.objects.get(correo=correo)
+            if  lector:
+                
+                mensaje = 'El correo que ingresó ya fue registrado'
+                return render(request, 'registro.html', {'mensaje':mensaje})
+
+        except:
+            
+            try:
+                validate_email(correo)
+                nuevo_lector = Lector(
+                    nombre = nombre,
+                    apellido = apellido,
+                    correo = correo
+                )
+                nuevo_lector.save()
+                
+                return redirect('/')
+            
+            except:
+                        
+                mensaje = 'Ingrese una dirección de correo válida.'
+                return render(request, 'registro.html', {'mensaje':mensaje})
+        
+    return render(request, 'registro.html', {'mensaje':mensaje})

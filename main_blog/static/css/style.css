@@ -18,3 +18,16 @@ body{
     scale: 1.01;
     opacity: 0.85;
 }
+
+#login-box{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 500px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    background-color: rgb(219, 219, 219);
+    box-sizing: border-box;
+    box-shadow: 1px 1px 15px 5px rgba(219, 219, 219, 0.7);
+}
