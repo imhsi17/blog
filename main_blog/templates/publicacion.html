@@ -8,7 +8,7 @@ Públicación | {{ publicacion.titulo }}
 <div class="container">
     <div class="row text-light">
         <h1 class="display-3" style="text-align: justify;">{{ publicacion.titulo }}</h1>
-        <img src="../media/{{ publicacion.imagen }}" id="img-publicacion" class="rounded mx-auto d-block" alt="imagen publicacion">
+        <img src="../media/{{ publicacion.imagen }}" id="img-publicacion" class="rounded mx-auto d-block my-2" alt="imagen publicacion">
     </div>
     <div class="row text-light">
         <div class="col-6">
@@ -30,13 +30,36 @@ Públicación | {{ publicacion.titulo }}
         <p style="text-align: justify;">{{ publicacion.contenido.html|safe }}</p>
     </div>
 </div>
+<div class="container">
+    <hr class="text-light">
+</div>
 {% endblock %}
 {% block recomendados %}
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-
+    <div class="row text-light">
+        <h1 class="display-4">Publicaciones Recomendadas</h1>
+    </div>
+    <div class="row text-center ">
+        {% for otro in otros %}
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 my-3">
+            <div class="card">
+                {% if otro.imagen %}
+                <img src="../media/{{ otro.imagen }}" class="card-img-top" id="img-normalize"
+                    alt="imagen publicación">
+                {% else %}
+                <img src="../../media/3x2.webp" class="card-img-top" id="img-normalize" alt="3x2-default">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ otro.titulo }}</h5>
+                    <p class="card-text">{{ otro.descripcion }}</p>
+                    <p class="card-text"><small class="text-body-secondary">Fecha Publicación:
+                         {{otro.fecha_publicacion }}</small></p>
+                    <a href="/publicacion/{{ otro.id }}" class="btn btn-info">Ver más</a>
+                    <a href="/categoria/{{ otro.categoria.nombre }}" class="btn btn-primary">{{ otro.categoria }}</a>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
