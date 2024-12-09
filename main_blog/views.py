@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.validators import validate_email
+from django.contrib import messages
 from .models import Publicacion, Categoria, Lector, ComentarioAutor, ComentarioLector
 
 # Create your views here.
@@ -38,10 +39,8 @@ def publicacion(request, id_publicacion):
     try:
         publicacion = Publicacion.objects.get(pk=id_publicacion, estado=True)
         categoria_publicacion = publicacion.categoria
-        
         otras_publicaciones = Publicacion.objects.filter(categoria=categoria_publicacion,
                                                          estado=True).exclude(pk=id_publicacion).order_by('-fecha_publicacion')[:3]
-    
         categorias = Categoria.objects.filter(estado=True).order_by('-fecha_registro')
         
         context = {
@@ -61,22 +60,31 @@ def publicacion(request, id_publicacion):
             
             return render(request, 'publicacion.html', context)
         
-        elif request.method=='POST':
+        if request.method=='POST':
             correo = request.POST['correo']
             comentario = request.POST['comentario']
-            lector = Lector.objects.filter(correo=correo)
-            if lector:
+            
+            try:
+                lector = Lector.objects.get(correo=correo)
+                print('Todo correcto')
                 comentario_lector = ComentarioLector(
                     contenido = comentario,
-                    autor = lector,
+                    lector = lector,
                     publicacion = publicacion
                 )
                 comentario_lector.save()
                 return render(request, 'publicacion.html', context)
             
+            except Lector.DoesNotExist:
+                
+                messages.error(request, 'Correo inválido. Registrese para publicar comentarios.')
+                print('Hubo un error')
+                return redirect(f'/publicacion/{id_publicacion}')
         
         return render(request, 'publicacion.html', context)
+    
     except Publicacion.DoesNotExist:
+        
         return render(request, 'error.html')
 
 def registro_lector(request):

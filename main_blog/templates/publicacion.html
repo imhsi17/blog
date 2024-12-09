@@ -65,7 +65,7 @@ Públicación | {{ publicacion.titulo }}
 <div class="container">
     <hr class="text-light">
 </div>
-<div class="container">
+<div class="container" id="comentario">
     <div class="row text-light">
         <h1 class="display-4">Dejanos un Comentario</h1>
     </div>
@@ -82,7 +82,14 @@ Públicación | {{ publicacion.titulo }}
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label fs-3">Correo</label>
                     <input type="email" name="correo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text text-light">Si no está registrado, porfavor registrese para comentar la publicación.</div>
+                    <div id="emailHelp" class="form-text text-light">
+                        Si no está registrado, porfavor <a href="/registro/" class="alert-link">registrese</a> para comentar la publicación.
+                    </div>
+                    {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{message}}
+                    </div>
+                    {% endfor %}
                 </div>
                 {% endif %}
                 <div class="mb-3">
