@@ -3,9 +3,13 @@
 Blog | Error
 {% endblock %}
 {% block bienvenida %}
-<div class="d-grid gap-2 col-6 mx-auto text-light">
-    <h1 class="display-3 text-center">HA OCURRIDO UN ERROR</h1>
-    <a class="btn btn-danger" href="/">Volver</a>
+<div class="container">
+    <div class="row text-light text-center justify-content-around">
+        <div class="col-6">
+        <h1 class="display-3 text-center">HA OCURRIDO UN ERROR</h1>
+        <a href="/"><button type="button" class="btn btn-danger btn-lg">Volver</button></a>
+        </div>
+    </div>
 </div>
 {% endblock %}
 {% block contenido %}
