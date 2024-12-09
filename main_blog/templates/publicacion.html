@@ -65,7 +65,8 @@ Públicación | {{ publicacion.titulo }}
 <div class="container">
     <hr class="text-light">
 </div>
-<div class="container" id="comentario">
+<!-- Contendedor para el formulario comentarios -->
+<div class="container">
     <div class="row text-light">
         <h1 class="display-4">Dejanos un Comentario</h1>
     </div>
@@ -98,6 +99,57 @@ Públicación | {{ publicacion.titulo }}
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <hr class="text-light">
+</div>
+<!-- Contenedor para los comentarios -->
+<div class="container">
+    <div class="row text-light">
+        <h1 class="display-4">Comentarios</h1>
+    </div>
+    <div class="row justify-content-around">
+        <div class="col-7 text-light pb-4">
+            {% for autor_comentario in autor_comentarios %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                {{ autor_comentario.autor.first_name }} {{ autor_comentario.autor.last_name }}
+                            </div>
+                            <div class="col-6 text-end fst-italic">
+                                {{ autor_comentario.fecha_publicacion }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ autor_comentario.contenido }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% for lector_comentario in lector_comentarios %}
+            <div class="card">
+                <div class="card-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                {{ lector_comentario.lector.nombre }} {{ lector_comentario.lector.apellido }}
+                            </div>
+                            <div class="col-6 text-end fst-italic">
+                                {{ lector_comentario.fecha_publicacion }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ lector_comentario.contenido }}</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
