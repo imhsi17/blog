@@ -33,6 +33,15 @@
                         <a class="nav-link active text-light" aria-current="page" href="/categoria/{{ categoria.nombre }}">{{ categoria.nombre }}</a>
                     </button>
                     {% endfor %}
+                    {% if request.user.is_authenticated %}
+                    <button class="btn bg-transparent">
+                        <a class="nav-link active text-light" aria-current="page" href="/logout/">Cerrar Sesión</a>
+                    </button>
+                    {% else %}
+                    <button class="btn bg-transparent">
+                        <a class="nav-link active text-light" aria-current="page" href="/login">Iniciar Sesión</a>
+                    </button>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -60,7 +69,12 @@
     <div class="container my-4">
         {% if publicaciones %}
         <div class="row text-light">
-            <h1 class="display-4">Últimas Publicaciones</h1>
+            <h1 class="col-9 display-4">Últimas Publicaciones</h1>
+            {% if request.user.is_authenticated %}
+            <button class="col-3 btn btn-secondary">
+                <a class="nav-link active text-light" aria-current="page" href="/admin/main_blog/publicacion/add/">Nueva Publicación</a>
+            </button>
+            {% endif %}
         </div>
         <div class="row text-center ">
             {% for publicacion in publicaciones %}
