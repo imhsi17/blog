@@ -1,10 +1,32 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from django.core.validators import validate_email
 from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import Publicacion, Categoria, Lector, ComentarioAutor, ComentarioLector
 
 # Create your views here.
+
+def inicio_sesion_autor(request):
+    
+    if request.method=='POST':
+        
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            messages.error(request, 'Credenciales Incorrectas!!')
+    
+    return render(request, 'login.hmtl')
+
+def cerrar_sesion(request):
+    
+    logout(request)
+    return redirect('/')
+
 def index(request):
     
     publicaciones = Publicacion.objects.filter(estado=True,
