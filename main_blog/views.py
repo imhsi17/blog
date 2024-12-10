@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.validators import validate_email
 from django.contrib import messages
+from django.core.paginator import Paginator
 from .models import Publicacion, Categoria, Lector, ComentarioAutor, ComentarioLector
 
 # Create your views here.
@@ -10,9 +11,13 @@ def index(request):
                     categoria__estado=True).order_by('-fecha_publicacion')
     categorias = Categoria.objects.filter(estado=True).order_by('-fecha_registro')
     
+    paginator = Paginator(publicaciones, 6)
+    page_number = request.GET.get('page')
+    publicaciones = paginator.get_page(page_number)
+    
     context = {
         'publicaciones':publicaciones,
-        'categorias':categorias
+        'categorias':categorias,
     }
     
     return render(request, 'index.html', context)
@@ -25,6 +30,10 @@ def categoria(request, nombre):
                     categoria=categoria,
                     categoria__estado=True).order_by('-fecha_publicacion')
     categorias = Categoria.objects.filter(estado=True).order_by('-fecha_registro')
+    
+    paginator = Paginator(publicaciones, 6)
+    page_number = request.GET.get('page')
+    publicaciones = paginator.get_page(page_number)
     
     context = {
         'publicaciones':publicaciones,

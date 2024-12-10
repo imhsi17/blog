@@ -58,6 +58,7 @@
         <hr class="text-light">
     </div>
     <div class="container my-4">
+        {% if publicaciones %}
         <div class="row text-light">
             <h1 class="display-4">Últimas Publicaciones</h1>
         </div>
@@ -83,7 +84,35 @@
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <div class="row text-light">
+            <h1 class="display-4">No existen publicaciones registradas</h1>
+        </div>
+        {% endif %}
     </div>
+    {% if publicaciones %}
+    <div class="container">
+        <div class="row text-light">
+            <nav class="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item disabled">
+                        <a class="page-link">
+                            Página {{ publicaciones.number }} de {{ publicaciones.paginator.num_pages }}
+                        </a>
+                    </li>
+                    {% if publicaciones.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page=1">&laquo; Primero</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ publicaciones.previous_page_number }}">Previo</a></li>
+                    {% endif %}
+                    {% if publicaciones.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ publicaciones.next_page_number }}">Siguiente</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ publicaciones.paginator.num_pages }}">Último &raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {% endif %}
     {% endblock %}
     {% block recomendados %}
     {% endblock %}
