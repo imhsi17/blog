@@ -1,2 +1,6 @@
 venv
 __pycache__
+publicaciones/*.webp
+publicaciones/*.jpg
+publicaciones/*.png
+publicaciones/*.jfif
