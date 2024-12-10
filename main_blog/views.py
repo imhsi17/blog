@@ -20,7 +20,7 @@ def inicio_sesion_autor(request):
         else:
             messages.error(request, 'Credenciales Incorrectas!!')
     
-    return render(request, 'login.hmtl')
+    return render(request, 'login.html')
 
 def cerrar_sesion(request):
     
