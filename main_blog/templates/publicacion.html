@@ -8,7 +8,11 @@ Públicación | {{ publicacion.titulo }}
 <div class="container">
     <div class="row text-light">
         <h1 class="display-3" style="text-align: justify;">{{ publicacion.titulo }}</h1>
+        {% if publicacion.imagen %}
         <img src="../media/{{ publicacion.imagen }}" id="img-publicacion" class="rounded mx-auto d-block my-2" alt="imagen publicacion">
+        {% else %}
+        <img src="../media/3x2.webp" id="img-publicacion" class="rounded mx-auto d-block my-2" alt="imagen publicacion">
+        {% endif %}
     </div>
     <div class="row text-light">
         <div class="col-6">
